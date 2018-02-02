@@ -1,0 +1,30 @@
+<h1>ruby socket room2</h1>
+<div id = 'log2'></div>
+<script>
+    function addMessage2(msg){
+        $("#log2").append("<p>" + msg + "</p>");
+
+    }
+
+    socket2 = new WebSocket('ws://localhost:3001/cable');
+    socket2.onopen = function (){
+        addMessage2("Socket Status: " + socket2.readyState + " (open)");
+        //从现有订阅中至少选择一个感兴趣的订阅，否则将无法建立连接,一旦订阅了某个频道，用户也就成为了订阅者
+        socket2.send(JSON.stringify({"command": "subscribe","identifier":"{\"channel\":\"RoomChannel\",\"room\":\"room2\"}"}))
+
+    }
+
+    socket2.onclose = function(){
+        addMessage2("Socket Status: " + socket2.readyState + " (closed)");
+    }
+
+
+    socket2.onmessage = function(msg) {
+        //console.log(JSON.parse(msg.data).message)
+        if(typeof(JSON.parse(msg.data).message) == 'object'){
+            addMessage2("Received: " + JSON.parse(msg.data).message['title'] +";" + JSON.parse(msg.data).message['body']);
+        }
+
+    }
+
+</script>
