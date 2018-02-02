@@ -1,6 +1,6 @@
 # README
 
-ctionCable作为API,被app调用例子
+ActionCable作为API,被app调用例子
 
 启用步骤:
 
