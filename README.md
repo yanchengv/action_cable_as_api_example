@@ -8,7 +8,7 @@ ActionCable作为API,被app调用例子
 
 * rails s -p 3001 启动项目
 
-* 打开网址：分别模拟三个用户订阅websocke
+* 打开网址：分别模拟三个用户订阅websocket
 
 ```ruby
  localhost:3001;
